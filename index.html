@@ -1,0 +1,442 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Классный журнал</title>
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Arial', sans-serif;
+      background-color: #f4f4f4;
+      color: #333;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    .container {
+      background-color: #fff;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+      border-radius: 8px;
+      padding: 20px;
+      max-width: 600px;
+      width: 100%;
+      text-align: center;
+    }
+
+    h1 {
+      margin-bottom: 20px;
+      color: #4CAF50;
+    }
+
+    .student-list {
+      list-style-type: none;
+      padding: 0;
+      margin-bottom: 20px;
+    }
+
+    .student {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 10px;
+      padding: 10px;
+      border-radius: 5px;
+      background-color: #f9f9f9;
+      transition: background-color 0.3s ease;
+    }
+
+    .student:hover {
+      background-color: #e0f7fa;
+    }
+
+    .status {
+      font-size: 1.5em;
+    }
+
+    .btn {
+      background-color: #4CAF50;
+      color: white;
+      border: none;
+      padding: 10px 20px;
+      cursor: pointer;
+      border-radius: 5px;
+      margin: 5px;
+      transition: background-color 0.3s ease;
+    }
+
+    .btn:hover {
+      background-color: #45a049;
+    }
+
+    .btn-absent {
+      background-color: #f44336;
+    }
+
+    .btn-absent:hover {
+      background-color: #e53935;
+    }
+
+    .send-btn {
+      width: 100%;
+      padding: 15px;
+      font-size: 1.2em;
+    }
+
+    @media (max-width: 768px) {
+      .student {
+        flex-direction: column;
+        align-items: flex-start;
+      }
+
+      .btn {
+        width: 100%;
+        margin: 5px 0;
+      }
+    }
+
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1>Журнал класса</h1>
+    <ul class="student-list">
+        <li class="student">
+            <span>1) Абдусатторова Мубина</span>
+            <span class="status" id="student-1-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-1-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-1-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>2) Аблякимов Зенур</span>
+            <span class="status" id="student-2-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-2-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-2-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>3) Азимов Анатолий</span>
+            <span class="status" id="student-3-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-3-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-3-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>4) Алимджанова Раббона</span>
+            <span class="status" id="student-4-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-4-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-4-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>5) Акромжонова Робия</span>
+            <span class="status" id="student-5-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-5-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-5-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>6) Ахтамов Алазиз</span>
+            <span class="status" id="student-6-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-6-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-6-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>7) Бобохонова Паризода</span>
+            <span class="status" id="student-7-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-7-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-7-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>8) Бурибоев Эльбек</span>
+            <span class="status" id="student-8-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-8-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-8-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>9) Гайратов Нуриддин</span>
+            <span class="status" id="student-9-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-9-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-9-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>10) Гафуров Сухроб</span>
+            <span class="status" id="student-10-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-10-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-10-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>11) Зиятов Тохирбек</span>
+            <span class="status" id="student-11-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-11-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-11-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>12) Зокиров Шавкат</span>
+            <span class="status" id="student-12-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-12-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-12-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>13) Зокирова Муслима</span>
+            <span class="status" id="student-13-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-13-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-13-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>14) Иргашева Ясмина</span>
+            <span class="status" id="student-14-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-14-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-14-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>15) Каримов Диер</span>
+            <span class="status" id="student-15-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-15-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-15-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>16) Каримова Турсуной (Д-О)</span>
+            <span class="status" id="student-16-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-16-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-16-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>17) Касимов Азиз</span>
+            <span class="status" id="student-17-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-17-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-17-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>18) Клычева Раиса</span>
+            <span class="status" id="student-18-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-18-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-18-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>19) Муродходжаев Мухиддин</span>
+            <span class="status" id="student-19-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-19-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-19-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>20) Набиев Бахром</span>
+            <span class="status" id="student-20-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-20-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-20-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>21) Парпиев Бахром</span>
+            <span class="status" id="student-21-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-21-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-21-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>22) Рустамов Азамат</span>
+            <span class="status" id="student-22-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-22-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-22-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>23) Саидахмадов Боходир</span>
+            <span class="status" id="student-23-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-23-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-23-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>24) Собиржонова Мубина</span>
+            <span class="status" id="student-24-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-24-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-24-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>25) Соколова Наталья</span>
+            <span class="status" id="student-25-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-25-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-25-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>26) Сохибназаров Асад</span>
+            <span class="status" id="student-26-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-26-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-26-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>27) Тошматова Дурдона</span>
+            <span class="status" id="student-27-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-27-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-27-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>28) Турсунов Жафар</span>
+            <span class="status" id="student-28-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-28-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-28-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>29) Турсунходжаев Амир</span>
+            <span class="status" id="student-29-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-29-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-29-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>30) Умматова Ширин</span>
+            <span class="status" id="student-30-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-30-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-30-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>31) Фарходбекова Робия</span>
+            <span class="status" id="student-31-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-31-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-31-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>32) Фахриддинходжаев Умар</span>
+            <span class="status" id="student-32-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-32-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-32-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>33) Хожимуродов Шахзод</span>
+            <span class="status" id="student-33-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-33-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-33-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        <li class="student">
+            <span>34) Шодмонов Мухаммад</span>
+            <span class="status" id="student-34-status">⚪</span>
+            <div>
+              <button class="btn" onclick="markStudent('student-34-status', true)">Пришёл</button>
+              <button class="btn btn-absent" onclick="markStudent('student-34-status', false)">Отсутствует</button>
+            </div>
+        </li>
+        
+      <!-- Добавь других учеников по аналогии -->
+    </ul>
+    <button class="btn send-btn" onclick="sendAttendance()">Отправить данные</button>
+  </div>
+
+  <script>
+    // Функция для установки статуса ученика
+    function markStudent(elementId, present) {
+      document.getElementById(elementId).innerText = present ? '✅' : '❌';
+    }
+
+    // Функция для отправки данных о посещаемости
+    function sendAttendance() {
+      let students = document.querySelectorAll('.student');
+      let attendance = [];
+
+      students.forEach(student => {
+        let name = student.querySelector('span').innerText;
+        let status = student.querySelector('.status').innerText;
+        attendance.push({ name, status });
+      });
+
+      // Сформируем текст сообщения
+      let message = 'Посещаемость:\n';
+      attendance.forEach(student => {
+        message += `${student.name}: ${student.status}\n`;
+      });
+
+      // Замените токен и chat_id на свои данные
+      const botToken = '7112485957:AAHgaI5G1TIICLCrZid3rPoesbhZW-CWzFo';  // Токен вашего бота
+      const chatId = '6654178666';  // Ваш Telegram chat ID
+
+      // Запрос к API Telegram
+      fetch(`https://api.telegram.org/bot${botToken}/sendMessage`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify({
+          chat_id: chatId,
+          text: message
+        }),
+      })
+      .then(response => response.json())
+      .then(data => {
+        if (data.ok) {
+          alert('Данные успешно отправлены!');
+        } else {
+          alert('Произошла ошибка при отправке данных.');
+        }
+      })
+      .catch(error => {
+        console.error('Ошибка:', error);
+        alert('Произошла ошибка при отправке данных.');
+      });
+    }
+  </script>
+</body>
+</html>
